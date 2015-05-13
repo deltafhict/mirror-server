@@ -43,6 +43,16 @@ $(function () {
         var type = json['data']['type']; // voice or gesture
 
         switch (app) {
+            case 'gesture':
+                if (action === 'DragToLeft') {
+                    $(".slider .slides").trigger("prev");
+                } else if (action === 'DragToRight') {
+                    $(".slider .slides").trigger("next");
+                } else {
+                    console.log('Unknown action:', action, 'of type', type);
+                }
+                break;
+
             case 'agenda':
                 if (action === 'open') {
                     $(".slider .slides").trigger("slideTo", 0);
