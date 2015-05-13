@@ -34,7 +34,7 @@ $(function () {
         try {
             var json = JSON.parse(message.data);
         } catch (e) {
-            console.log('This doesn\'t look like a valid JSON: ', message.data);
+            console.log('This doesn\'t look like a valid JSON:', message.data);
             return;
         }
 
@@ -50,11 +50,42 @@ $(function () {
                     $(".agenda-events").css("width", "100px");
                     $('.agenda-events').height(100);
                 } else {
-                    console.log('Unknown action');
+                    console.log('Unknown action:', action, 'of type', type);
                 }
                 break;
+
+            case 'slack':
+                if (action === 'pm') {
+                    console.log('Going to PM a person...');
+                } else if (action === 'post') {
+                    console.log('Going to post to a #channel...');
+                } else {
+                    console.log('Unknown action:', action, 'of type', type);
+                }
+                break;
+
+            case 'twitter':
+                if (action === 'showFeed') {
+                    console.log('Going to show feed...');
+                } else if (action === 'dm') {
+                    console.log('Going to DM a person...');
+                } else if (action === 'tweet') {
+                    console.log('Going to tweet...');
+                } else {
+                    console.log('Unknown action:', action, 'of type', type);
+                }
+                break;
+
+            case 'health':
+                if (action === 'showBPM') {
+                    console.log('Goign to show BPM');
+                } else {
+                    console.log('Unknown action:', action, 'of type', type);
+                }
+                break;
+
             default:
-                console.log('Unknown app');
+                console.log('Unknown app:' , app, 'with action', action, 'of type', type);
                 break;
         }
     };
