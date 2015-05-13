@@ -128,8 +128,7 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 	
 	line-height: 100px;
 	font-size: 48px;
-	text-align: center;
-	background-color: #E84C3D; 		
+	text-align: center;	
 }
 .agenda-events .events {
 	position: absolute;
@@ -147,8 +146,8 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 	padding-left: 65px;
 	margin-top: 5px;
 	min-height: 50px;
-	color: #000;
-	background-color: #fff;
+	color: #fff;
+	border-bottom: 3px solid #fff;
 }
 .agenda-events .events ul > li .eventdate {
 	position: absolute;
@@ -162,11 +161,13 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 	line-height: 16px;
 	text-align: center;
 	color: #fff;
-	background-color: #BEC3C7;
 }
-.agenda-events .events ul > li:first-child .eventdate { background-color: #2FCC71; }
-.agenda-events .events ul > li:nth-child(2) .eventdate { background-color: #F1C40F; }
-.agenda-events .events ul > li:nth-child(3) .eventdate { background-color: #E77E23; }
+.agenda-events .events ul > li:first-child { border-bottom: 3px solid #2FCC71; }
+.agenda-events .events ul > li:nth-child(2) { border-bottom: 3px solid #F1C40F; }
+.agenda-events .events ul > li:nth-child(3) { border-bottom: 3px solid #E77E23; }
+.agenda-events .events ul > li:first-child .eventdate { color: #2FCC71; }
+.agenda-events .events ul > li:nth-child(2) .eventdate { color: #F1C40F; }
+.agenda-events .events ul > li:nth-child(3) .eventdate { color: #E77E23; }
 
 .agenda-events .events ul > li .eventtitle {
 	text-transform: uppercase;
@@ -209,11 +210,11 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 	line-height: 100px;
 	font-size: 48px;
 	text-align: center;
-	background-color: #BEC3C7;
+	border: 3px solid #BEC3C7;
 }
 .slider .slides > li.inactive {
 	margin-top: 25px;
-	background-color: #BEC3C7;
+	border: 3px solid #BEC3C7;
 }
 .slider .slides > li.active {
 	width: 125px;
@@ -221,19 +222,19 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 	line-height: 125px;
 	font-size: 64px;
 }
-.slider .slides > li.skype { background-color: #2A80B9; }
-.slider .slides > li.facebook { background-color: #34495E; }
-.slider .slides > li.twitter { background-color: #3598DC; }
-.slider .slides > li.phone { background-color: #808B8D; }
-.slider .slides > li.heart { background-color: #C1392B; }
+.slider .slides > li.skype { border: 3px solid #2A80B9; }
+.slider .slides > li.facebook { border: 3px solid #34495E; }
+.slider .slides > li.twitter { border: 3px solid #3598DC; }
+.slider .slides > li.phone { border: 3px solid #808B8D; }
+.slider .slides > li.heart { border: 3px solid #C1392B; }
 
-.slider .slides > li.home { background-color: #000; }
+.slider .slides > li.home { border: 3px solid #fff; }
 
-.slider .slides > li.list { background-color: #E84C3D; }
-.slider .slides > li.call { background-color: #16A086; }
-.slider .slides > li.chat { background-color: #F1C40F; }
-.slider .slides > li.slack { background-color: #9C59B8; }
-.slider .slides > li.mail { background-color: #E77E23; }
+.slider .slides > li.list { border: 3px solid #E84C3D; }
+.slider .slides > li.call { border: 3px solid #16A086; }
+.slider .slides > li.chat { border: 3px solid #F1C40F; }
+.slider .slides > li.slack { border: 3px solid #9C59B8; }
+.slider .slides > li.mail { border: 3px solid #E77E23; }
 
 .slider .slides > li > a { color: #fff; }
 

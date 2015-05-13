@@ -47,7 +47,7 @@ $(document).ready(function() {
 			$this.children().addClass("inactive");
 			
 			//add .active class to 2nd / centered item
-			items.filter(":eq(7)").addClass("active").removeClass("inactive");
+			items.filter(":eq(2)").addClass("active").removeClass("inactive");
 			
 			lastListH = $('#eventlist').height();
 			console.log(lastListH);
@@ -66,8 +66,8 @@ $(document).ready(function() {
 			width: '100%',
 			height: 125,
 			items: {
-				visible: 15,
-				start: -1,
+				visible: 5,
+				start: 3,
 				height: 'auto',
 			},
 			scroll: {
