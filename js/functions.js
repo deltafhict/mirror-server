@@ -1,5 +1,11 @@
 $(window).load(function() {
 	
+	$(".logo").fadeIn(3000);
+	
+	setTimeout(function() {
+		$(".navigation").addClass("active");
+	}, 3000);
+	
 	var slideNum = $('.slider .slides > li').length;
 	console.log(slideNum);
 	slideNum = slideNum/2;
@@ -9,20 +15,17 @@ $(window).load(function() {
 $(document).ready(function() {
 	
 	var key = 0;
-	$(document).keypress(function(e) {
+	$(document).keydown(function(e) {
         key = e.which;
 		console.log(key);	
-		if(key == 49){ $(".slider .slides").trigger("slideTo", 0); }	
-		if(key == 50){ $(".slider .slides").trigger("slideTo", 1); }	
-		if(key == 51){ $(".slider .slides").trigger("slideTo", 2); }	
-		if(key == 52){ $(".slider .slides").trigger("slideTo", 3); }	
-		if(key == 53){ $(".slider .slides").trigger("slideTo", 4); }	
-		if(key == 54){ $(".slider .slides").trigger("slideTo", -6); }	
-		if(key == 55){ $(".slider .slides").trigger("slideTo", -5); }	
-		if(key == 56){ $(".slider .slides").trigger("slideTo", -4); }	
-		if(key == 57){ $(".slider .slides").trigger("slideTo", -3); }	
-		if(key == 48){ $(".slider .slides").trigger("slideTo", -2); }
-		if(key == 13){ $(".slider .slides").trigger("slideTo", -1); }	
+		if(key == 13){ $(".navigation").toggleClass("active"); }
+		if(!$(".navigation").hasClass("active")) {
+			$(".agenda-events").css("width", "0");	
+			$('.agenda-events').height(0);
+		}
+		
+		if(key == 37 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("prev"); }
+		if(key == 39 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("next"); }
     });
 	
 	$('body').click(function(e) {
@@ -49,13 +52,13 @@ $(document).ready(function() {
 			lastListH = $('#eventlist').height();
 			console.log(lastListH);
 				
-			if($(".slider .slides > li.list").hasClass("active") == true) {
-				$(".agenda-events").css("width", "555px");
+			if($(".slider .slides > li.list").hasClass("active")) {
+				$(".agenda-events").css("width", "445px");
 				$('.agenda-events').height(lastListH);
 			}
 			else {
-				$(".agenda-events").css("width", "100px");	
-				$('.agenda-events').height(100);
+				$(".agenda-events").css("width", "0");	
+				$('.agenda-events').height(0);
 			}
 		}
   
@@ -87,15 +90,3 @@ $(document).ready(function() {
 	});
 
 });
-
-function test(message)
-{
-	if (message == "test")
-	{
-		alert(message);
-	}
-	else
-	{
-		alert('fout'.message);
-	}
-}
