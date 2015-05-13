@@ -1,0 +1,8 @@
+{
+  "name": "mirror-server",
+  "description": "Server for Delta Mirror project",
+  "version": "0.0.1",
+  "devDependencies": {
+    "websocket": "^1.0.18"
+  }
+}
