@@ -55,10 +55,11 @@ $(function () {
 
             case 'agenda':
                 if (action === 'open') {
-                    $(".slider .slides").trigger("slideTo", 0);
+                    $(".slider .slides").trigger("slideTo", 4);
                 } else if (action === 'close') {
-                    $(".agenda-events").css("width", "100px");
-                    $('.agenda-events').height(100);
+                    $(".agenda-events").css("width", "0");
+                    $(".agenda-events").height(0);
+                    $(".slider .slides").trigger("slideTo", 3);
                 } else {
                     console.log('Unknown action:', action, 'of type', type);
                 }
