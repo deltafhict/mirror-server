@@ -6,7 +6,7 @@ body {
 	position: relative;
 	min-width: 960px;
 	height: 100%;
-    background-color: #333333;
+    background-color: #000;
     color: #fff;
 	font-size: 14px;
 	line-height: 1.42857;
@@ -120,7 +120,6 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 	overflow: hidden;
 	transition: 1s ease all;
 }
-.agenda-events:hover { width: 555px; }
 .agenda-events .title {
 	float: left;
 	width: 100px;
@@ -130,10 +129,7 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 	font-size: 48px;
 	text-align: center;	
 }
-.agenda-events .events {
-	position: absolute;
-	width: 445px;
-}
+.agenda-events .events { width: 445px; }
 .agenda-events .events ul {
 	list-style: none;
 	margin: 0;
@@ -173,6 +169,8 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 	text-transform: uppercase;
 	font-style: italic;	
 }
+
+.agenda-events .events ul > li .description { display: none; }
 
 
 /* ==========================================================================

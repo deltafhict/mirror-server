@@ -3,6 +3,7 @@ $(window).load(function() {
 	$(".logo").fadeIn(3000);
 	
 	setTimeout(function() {
+		$(".logo").fadeOut(3000);
 		$(".navigation").addClass("active");
 	}, 3000);
 	
@@ -18,18 +19,22 @@ $(document).ready(function() {
 	$(document).keydown(function(e) {
         key = e.which;
 		console.log(key);	
-		if(key == 13){ $(".navigation").toggleClass("active"); }
+		if(key == 13){
+			$(".agenda-events .events ul > li").not(":nth-child(6)").css("display", "none");
+			$(".agenda-events .events ul > li .description").css("display", "block");
+		}
+		else {
+			$(".agenda-events .events ul > li").not(":nth-child(6)").css("display", "block");
+			$(".agenda-events .events ul > li .description").css("display", "none");	
+		}
+		
 		if(!$(".navigation").hasClass("active")) {
 			$(".agenda-events").css("width", "0");	
-			$('.agenda-events').height(0);
+			$(".agenda-events").height(0);
 		}
 		
 		if(key == 37 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("prev"); }
 		if(key == 39 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("next"); }
-    });
-	
-	$('body').click(function(e) {
-        $(".slider .slides").trigger("slideTo", -1);
     });
 	
 	var lastListH;
