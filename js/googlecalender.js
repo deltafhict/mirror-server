@@ -8,7 +8,7 @@
         apiKey: 'Public_API_Key',
         dateFormat: 'test',
         errorMsg: 'No events in calendar',
-        maxEvents: 7,
+        maxEvents: -1,
         futureEventsOnly: true,
         sortDescending: true
       },
@@ -39,7 +39,7 @@
 					s ='<div class="eventtitle">' + summary + '</div>';
 					s +='<div class="eventdate">'+ formatDate(eventdate, defaults.dateFormat.trim()) +'</div>';
 					if(location) {
-						s +='<div class="location">Where: ' + location + '</div>';
+						s +='<div class="location"><i class="fa fa-map"></i> ' + location + '</div>';
 					}
 					if(description) {
 						s +='<div class="description">'+ description +'</div>';
