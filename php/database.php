@@ -1,5 +1,9 @@
 <?php
 	class Database {
+		/**
+		 * Connects to the database.
+		 * @return con The connection object.
+		 */
 		public static function database_connection() {
 			$host = 'mysql02.totaalholding.nl';
 			$database = 'basbroek_mirror';
@@ -14,6 +18,10 @@
 			return $con;
 		}
 
+		/**
+		 * Closes the connection to the database.
+		 * @param $con The conection to close.
+		 */
 		public static function close_connection($con) {
 			mysqli_close($con);
 		}

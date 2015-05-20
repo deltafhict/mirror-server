@@ -34,7 +34,7 @@ $(function () {
         try {
             var json = JSON.parse(message.data);
         } catch (e) {
-            console.log('This doesn\'t look like a valid JSON:', message.data);
+            console.log('This doesn\'t look like valid JSON:', message.data);
             return;
         }
 
@@ -106,6 +106,13 @@ $(function () {
     };
 });
 
+/**
+ * Posts the task to the database.
+ * @param  {String} user The user of the task.
+ * @param  {String} type The type of the task.
+ * @param  {String} app The app the task was for.
+ * @param  {String} action The action performed.
+ */
 function postToDatabase(user, type, app, action) {
     if (user === null || user === "") {
         return;

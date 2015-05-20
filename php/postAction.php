@@ -11,7 +11,7 @@
 	$action = '';
 
 	if(isset($_POST['user'])) {
-        $user = $_POST['user'];     
+        $user = $_POST['user'];
     } else if (isset($_GET['user'])) {
     	$user = $_GET['user'];
     } else {
@@ -19,7 +19,7 @@
     }
 
 	if(isset($_POST['type'])) {
-        $type = $_POST['type'];     
+        $type = $_POST['type'];
     } else if (isset($_GET['type'])) {
     	$type = $_GET['type'];
     } else {
@@ -27,7 +27,7 @@
     }
 
     if(isset($_POST['app'])) {
-        $app = $_POST['app'];     
+        $app = $_POST['app'];
     } else if (isset($_GET['app'])) {
     	$app = $_GET['app'];
     } else {
@@ -35,7 +35,7 @@
     }
 
     if(isset($_POST['action'])) {
-        $action = $_POST['action'];     
+        $action = $_POST['action'];
     } else if (isset($_GET['action'])) {
     	$action = $_GET['action'];
     } else {
