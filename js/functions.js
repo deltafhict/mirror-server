@@ -25,11 +25,11 @@ $(document).ready(function() {
 		}
 		else {
 			$(".agenda-events .events ul > li").not(":nth-child(6)").css("display", "block");
-			$(".agenda-events .events ul > li .description").css("display", "none");	
+			$(".agenda-events .events ul > li .description").css("display", "none");
 		}
 		
 		if(!$(".navigation").hasClass("active")) {
-			$(".agenda-events").css("width", "0");	
+			$(".agenda-events").css("width", "0");
 			$(".agenda-events").height(0);
 		}
 		

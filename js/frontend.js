@@ -38,9 +38,13 @@ $(function () {
             return;
         }
 
+        var user = json['data']['person'];
+        var type = json['data']['type']; // voice or gesture
         var app = json['data']['app'];
         var action = json['data']['action'];
-        var type = json['data']['type']; // voice or gesture
+
+        // Send the request to the database.
+        postToDatabase(user, type, app, action);
 
         switch (app) {
             case 'gesture':
@@ -101,3 +105,26 @@ $(function () {
         }
     };
 });
+
+function postToDatabase(user, type, app, action) {
+    if (user === null || user === "") {
+        return;
+    } else if (type === null || type === "") {
+        return;
+    } else if (app === null || app === "") {
+        return;
+    } else if (action === null || action === "") {
+        return;
+    }
+
+    var baseURL = 'php/postAction.php';
+    var params = '?user=' + user + 
+                    '&type=' + type +
+                    '&app=' + app +
+                    '&action=' + action;
+
+    xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open('POST', baseURL + params, true);
+    xmlhttp.send();
+}
