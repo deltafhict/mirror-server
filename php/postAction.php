@@ -44,7 +44,7 @@
 
 	$con = Database::database_connection();
 
-	$query = "INSERT INTO result (user, type, app, action) VALUES('$user', '$type', '$app', '$action');";
+	$query = "INSERT INTO result (user, type, app, action, firedAt) VALUES('$user', '$type', '$app', '$action', NOW());";
 	$result = mysqli_query($con, $query);
 
 	Util::console($result);
