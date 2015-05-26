@@ -10,7 +10,12 @@ Environment setup
 
 __Node__
 
-Install the dependencies using `npm`
+First, install n(ode) p(ackage) m(anager) if you don't have it already. It comes with node.
+
+You can get it at [https://nodejs.org/](https://nodejs.org/).
+
+
+Then, install the dependencies using `npm`
 
     npm install
 
