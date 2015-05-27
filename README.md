@@ -40,7 +40,16 @@ the frontend tries to connect to the server when it starts.
 Testing
 ---
 
-To be implemented
+Tests are run with [Jasmine](http://jasmine.github.io/).
+
+Jasmine is automatically installed when you run `npm install`.
+
+To run the tests, use
+
+    node_modules/jasmine/bin/jasmine.js
+
+For Jasmine to test your tests, the file containing the tests should end in 'Spec.js'  
+and be located somewhere inside the spec folder.
 
 
 Deployment
