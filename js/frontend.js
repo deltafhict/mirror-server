@@ -115,7 +115,7 @@ $(function () {
  */
 function postToDatabase(user, type, app, action) {
     if (user === null || user === "") {
-        return;
+        user = "undefined";
     } else if (type === null || type === "") {
         return;
     } else if (app === null || app === "") {
