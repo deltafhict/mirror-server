@@ -2,7 +2,9 @@
   "name": "mirror-server",
   "description": "Server for Delta Mirror project",
   "version": "0.0.1",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "jasmine": "^2.3.1",
     "websocket": "^1.0.18"
   }
 }
