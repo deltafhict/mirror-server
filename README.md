@@ -3,7 +3,7 @@ mirror-server
 
 The server for the Delta mirror project.
 
-
+[![Build Status](http://server.ocb-applications.nl:4000/buildStatus/icon?job=compi-ionic)](http://server.ocb-applications.nl:4000/job/compi-ionic)
 
 Environment setup
 ---
