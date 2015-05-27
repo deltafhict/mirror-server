@@ -1,43 +1,31 @@
+//Variables
+var key = 0;
+var favActive = 1;
+var menuTop;
+
+//Processing
+menuTop = $('.navigation').offset().top;
+menuTop = menuTop - 200;
+
+//Debugging
+console.log('top: ' + menuTop);
+
 $(window).load(function() {
-
-	$(".logo").fadeIn(3000);
-
-	setTimeout(function() {
-		$(".logo").fadeOut(3000, function(){
-			$(".fav-nav").fadeIn(3000);
-			$(".navigation").addClass("active");	
-		});
-	}, 3000);
-
-	var slideNum = $('.slider .slides > li').length;
-	console.log(slideNum);
-	slideNum = slideNum/2;
-
+	openDevice();
 });
 
 $(document).ready(function() {
-
-	var key = 0;
-	var favActive = 0;
+	
 	$(".fav-nav ul li").eq(favActive).addClass("active");
 	
 	$(document).keydown(function(e) {
         key = e.which;
 		console.log(key);
 		
-
 		if(key == 13){
-			$(".agenda-events .events ul > li").not(":nth-child(1)").css("display", "none");
-			$(".agenda-events .events ul > li .description").css("display", "block");
-		}
-		else {
-			$(".agenda-events .events ul > li").not(":nth-child(1)").css("display", "block");
-			$(".agenda-events .events ul > li .description").css("display", "none");	
-		}
-
-		if(!$(".navigation").hasClass("active")) {
-			$(".agenda-events").css("width", "0");
-			$(".agenda-events").height(0);
+			agendaDetail();
+		} else {
+			agendaOverview();	
 		}
 
 		if(key == 37 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("prev"); }
@@ -48,28 +36,36 @@ $(document).ready(function() {
 			
 			if(favActive == -1){ favActive = 2; }
 			
-			//console.log("Up: " + favActive);
-			
 			$(".fav-nav ul li").removeClass("active");
 			$(".fav-nav ul li").eq(favActive).addClass("active");
 		}
+		
 		if(key == 40){
 			favActive++;
 			
 			if(favActive == 3){ favActive = 0; }
 			
-			//console.log("Down: " + favActive); 
-			
 			$(".fav-nav ul li").removeClass("active");
 			$(".fav-nav ul li").eq(favActive).addClass("active");
 		}
+		
+		if(key == 38 || key == 40){
+			if($(".fav-nav ul > li.list").hasClass("active")) {
+				openAgenda();
+			}
+			else {
+				closeAgenda();
+			}	
+		}
+		
+		if(key == 49){ openFav(); } //Key 1 opens favorite menu
+		if(key == 50){ closeFav(); } //Key 2 closes favorite menu
+		if(key == 27){ openNav(); } //Key Esc opens main menu
     });
-
-	var lastListH;
 
 	$(function() {
 
-		var $highlight = function() {
+		var $highlight = function(){
 			var $this = $(".slider .slides");
 
 			//get all visible items (in this case 3 slides)
@@ -82,22 +78,17 @@ $(document).ready(function() {
 			//add .active class to 2nd / centered item
 			items.filter(":eq(2)").addClass("active").removeClass("inactive");
 
-			lastListH = $('#eventlist').height();
-			console.log(lastListH);
-
-			if($(".slider .slides > li.list").hasClass("active")) {
-				$(".agenda-events").css("width", "500px");
-				$('.agenda-events').height(lastListH);
+			if($(".slider .slides > li.list").hasClass("active")){
+				openAgenda();
 			}
 			else {
-				$(".agenda-events").css("width", "0");
-				$('.agenda-events').height(0);
+				closeAgenda();
 			}
 		}
 
 		$('.slider .slides').carouFredSel({
 			width: '100%',
-			height: 125,
+			height: 100,
 			align: "center",
 			items: {
 				visible: 5,
@@ -108,7 +99,6 @@ $(document).ready(function() {
 				items: 1,
 				duration: 500,
 				timeoutDuration: 1000,
-				// set active slide on scroll
       			onAfter : $highlight,
 			},
 			auto: {
@@ -124,3 +114,40 @@ $(document).ready(function() {
 	});
 
 });
+
+function openDevice() {
+	$(".logo").fadeIn(3000, function(){
+		$(".logo").fadeOut(1000, function(){
+			$(".fav-nav").fadeIn();
+		});	
+	});
+}
+
+function openFav() {
+	$('.fav-nav').fadeIn();
+}
+function closeFav() {
+	$('.fav-nav').fadeOut();	
+}
+
+function openNav() {
+	$('.navigation').toggleClass('active');	
+}
+
+function openAgenda(){
+	$('.agenda-events').css('width', '500px');
+	$('.agenda-events').height(menuTop);	
+}
+function closeAgenda(){
+	$('.agenda-events').css('width', '0');
+	$('.agenda-events').height(0);
+}
+
+function agendaDetail(){
+	$('.agenda-events .events ul > li').not(':nth-child(1)').css('display', 'none');
+	$('.agenda-events .events ul > li .description').css('display', 'block');
+}
+function agendaOverview(){
+	$('.agenda-events .events ul > li').not(':nth-child(1)').css('display', 'block');
+	$('.agenda-events .events ul > li .description').css('display', 'none');	
+}
