@@ -15,49 +15,49 @@ $(window).load(function() {
 });
 
 $(document).ready(function() {
-	
+
 	$(".fav-nav ul li").eq(favActive).addClass("active");
-	
+
 	$(document).keydown(function(e) {
         key = e.which;
 		console.log(key);
-		
+
 		if(key == 13){
 			agendaDetail();
 		} else {
-			agendaOverview();	
+			agendaOverview();
 		}
 
 		if(key == 37 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("prev"); }
 		if(key == 39 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("next"); }
 
 		if(key == 38){
-			favActive--; 
-			
+			favActive--;
+
 			if(favActive == -1){ favActive = 2; }
-			
+
 			$(".fav-nav ul li").removeClass("active");
 			$(".fav-nav ul li").eq(favActive).addClass("active");
 		}
-		
+
 		if(key == 40){
 			favActive++;
-			
+
 			if(favActive == 3){ favActive = 0; }
-			
+
 			$(".fav-nav ul li").removeClass("active");
 			$(".fav-nav ul li").eq(favActive).addClass("active");
 		}
-		
+
 		if(key == 38 || key == 40){
 			if($(".fav-nav ul > li.list").hasClass("active")) {
 				openAgenda();
 			}
 			else {
 				closeAgenda();
-			}	
+			}
 		}
-		
+
 		if(key == 49){ openFav(); } //Key 1 opens favorite menu
 		if(key == 50){ closeFav(); } //Key 2 closes favorite menu
 		if(key == 27){ openNav(); } //Key Esc opens main menu
@@ -119,7 +119,7 @@ function openDevice() {
 	$(".logo").fadeIn(3000, function(){
 		$(".logo").fadeOut(1000, function(){
 			$(".fav-nav").fadeIn();
-		});	
+		});
 	});
 }
 
@@ -127,16 +127,16 @@ function openFav() {
 	$('.fav-nav').fadeIn();
 }
 function closeFav() {
-	$('.fav-nav').fadeOut();	
+	$('.fav-nav').fadeOut();
 }
 
 function openNav() {
-	$('.navigation').toggleClass('active');	
+	$('.navigation').toggleClass('active');
 }
 
 function openAgenda(){
 	$('.agenda-events').css('width', '500px');
-	$('.agenda-events').height(menuTop);	
+	$('.agenda-events').height(menuTop);
 }
 function closeAgenda(){
 	$('.agenda-events').css('width', '0');
@@ -149,5 +149,5 @@ function agendaDetail(){
 }
 function agendaOverview(){
 	$('.agenda-events .events ul > li').not(':nth-child(1)').css('display', 'block');
-	$('.agenda-events .events ul > li .description').css('display', 'none');	
+	$('.agenda-events .events ul > li .description').css('display', 'none');
 }
