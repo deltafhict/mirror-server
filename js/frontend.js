@@ -48,9 +48,9 @@ $(function () {
 
         switch (app) {
             case 'gesture':
-                if (action === 'DragToLeft') {
+                if (action === 'swipeToLeft') {
                     $(".slider .slides").trigger("prev");
-                } else if (action === 'DragToRight') {
+                } else if (action === 'swipeToRight') {
                     $(".slider .slides").trigger("next");
                 } else {
                     console.log('Unknown action:', action, 'of type', type);
