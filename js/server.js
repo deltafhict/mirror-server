@@ -3,6 +3,7 @@
 var port = 1337;
 var webSocketServer = require('websocket').server;
 var http = require('http');
+var sf = require('./socket-functions');
 
 // list of currently connected clients (users)
 var clients = [];
@@ -40,10 +41,7 @@ wsServer.on('request', function(request) {
         console.log(req);
 
         // broadcast message to all connected clients
-        var json = JSON.stringify({ type:'message', data: req });
-        for (var i=0; i < clients.length; i++) {
-            clients[i].sendUTF(json);
-        }
+        sf.broadcastMessage(clients, req);
     });
 
     // user disconnected
