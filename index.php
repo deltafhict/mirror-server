@@ -17,6 +17,9 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="js/googlecalender.js" type="text/javascript"></script>
 
+        <script src="http://js.leapmotion.com/leap-0.6.3.min.js"></script>
+        <script src="http://js.leapmotion.com/leap-plugins-0.1.8.js"></script>
+
         <script type="text/javascript">
            jQuery(function ($) {
                $('#eventlist').gCalReader({
@@ -29,7 +32,6 @@
     </head>
 
     <body>
-
     	<div class="logo"></div>
 
         <div class="agenda-events">
@@ -45,6 +47,6 @@
         <script src="js/jquery.carouFredSel-6.2.1.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/frontend.js"></script>
-
+        <script src="js/leap-gestures.js"></script>
     </body>
 </html>

@@ -125,9 +125,11 @@ function openDevice() {
 
 function openFav() {
 	$('.fav-nav').fadeIn();
+	console.log('open fav');
 }
 function closeFav() {
 	$('.fav-nav').fadeOut();
+	console.log('close fav');
 }
 
 function openNav() {

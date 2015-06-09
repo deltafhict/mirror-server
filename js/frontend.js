@@ -49,10 +49,15 @@ $(function () {
         switch (app) {
             case 'gesture':
                 if (action === 'swipeToLeft') {
-                    $(".slider .slides").trigger("prev");
-                } else if (action === 'swipeToRight') {
                     $(".slider .slides").trigger("next");
-                } else {
+                } else if (action === 'swipeToRight') {
+                    $(".slider .slides").trigger("prev");
+                } else if (action === 'swipeDown') {
+                    openFav();
+                }
+                else if (action === 'swipeUp') {
+                    closeFav();
+                }else {
                     console.log('Unknown action:', action, 'of type', type);
                 }
                 break;
