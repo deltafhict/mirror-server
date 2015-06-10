@@ -92,8 +92,12 @@ $(document).ready(function() {
 			if($(".slider .slides > li.list").hasClass("active")){
 				openAgenda();
 			}
+			else if($(".slider .slides > li.weather").hasClass("active")){
+				openWeather();
+			}
 			else {
 				closeAgenda();
+				closeWeather();
 			}
 		}
 
@@ -153,6 +157,15 @@ function openAgenda(){
 function closeAgenda(){
 	$('.agenda-events').css('width', '0');
 	$('.agenda-events').height(0);
+}
+
+function openWeather(){
+	$('.weatherLoad').css('width', '500px');
+	$('.weatherLoad').height(menuTop);
+}
+function closeWeather(){
+	$('.weatherLoad').css('width', '0');
+	$('.weatherLoad').height(0);
 }
 
 function agendaDetail(){
