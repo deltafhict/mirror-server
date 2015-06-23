@@ -12,6 +12,8 @@
                     <li class="chat"><a><i class="fa fa-comment"></i></a></li>
                     <li class="slack"><a><i class="fa fa-slack"></i></a></li>
                     <li class="mail"><a><i class="fa fa-envelope"></i></a></li>
+                    <li class="weather"><a><i class="fa fa-sun-o"></i></a></li>
+                    
                 </ul>
             </div>
         </div>

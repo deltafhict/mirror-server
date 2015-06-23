@@ -20,6 +20,7 @@
 
         <script src="http://js.leapmotion.com/leap-0.6.3.min.js"></script>
         <script src="http://js.leapmotion.com/leap-plugins-0.1.8.js"></script>
+        <script src="<?php echo $base; ?>js/jquery.simpleWeather.js"></script>
 
         <script type="text/javascript">
            jQuery(function ($) {
@@ -29,6 +30,33 @@
                  sortDescending: false
                 });
              });
+
+           $(document).ready(function() {
+            $.simpleWeather({
+                woeid: '', //EINDHOVEN729028
+                location: 'Eindhoven',
+                unit: 'c',
+                success: function(weather) {
+                  html = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+                  html += '<div class="caption">';
+                  html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+                  html += '<li class="currently">'+weather.currently+'</li>';
+                  html += '<li>'+weather.low+'&deg;C</li> | ';
+                  html += '<li>'+weather.high+'&deg;C</li></ul>';
+                  
+                  
+                  for(var i=0;i<weather.forecast.length;i++) {
+                    html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
+                  }
+                  html += '</div>';
+                  $(".weatherLoad").html(html);
+                },
+                error: function(error) {
+                  $(".weatherLoad").html('<p>'+error+'</p>');
+                }
+              });
+            });
+
         </script>
     </head>
 
@@ -47,6 +75,9 @@
                 <li class="list"><a><i class="fa fa-list"></i></a></li>
                 <li class="call"><a><i class="fa fa-phone"></i></a></li>
             </ul>
+        </div>
+
+        <div class="weatherLoad">
         </div>
 
         <div class="agenda-events">
