@@ -46,9 +46,9 @@ $(function () {
         // Send the request to the database.
         postToDatabase(user, type, app, action);
 
-        switch (app) {
-            case 'gesture':
-                if (action === 'swipeToLeft') {
+        switch (type) {
+        	case 'gesture':
+        		if (action === 'swipeToLeft') {
                     $(".slider .slides").trigger("next");
                 } else if (action === 'swipeToRight') {
                     $(".slider .slides").trigger("prev");
@@ -60,8 +60,15 @@ $(function () {
                 }else {
                     console.log('Unknown action:', action, 'of type', type);
                 }
-                break;
+                return;
+                break; // Just to make sure.
 
+            default:
+            	console.log('Unknown app:' , app, 'with action', action, 'of type', type);
+            	break;
+        }
+
+        switch (app) {
             case 'agenda':
                 if (action === 'open') {
                     $(".slider .slides").trigger("slideTo", 4);
@@ -130,7 +137,7 @@ function postToDatabase(user, type, app, action) {
     }
 
     var baseURL = 'php/postAction.php';
-    var params = '?user=' + user + 
+    var params = '?user=' + user +
                     '&type=' + type +
                     '&app=' + app +
                     '&action=' + action;
