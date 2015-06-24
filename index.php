@@ -34,7 +34,7 @@
            $(document).ready(function() {
             $.simpleWeather({
                 woeid: '', //EINDHOVEN729028
-                location: 'Eindhoven',
+                location: 'Amsterdam',
                 unit: 'c',
                 success: function(weather) {
                   html = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
@@ -46,7 +46,7 @@
                   
                   
                   for(var i=0;i<weather.forecast.length;i++) {
-                    html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
+                    html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'&deg;C</p>';
                   }
                   html += '</div>';
                   $(".weatherLoad").html(html);
@@ -61,7 +61,12 @@
     </head>
 
     <body>
+      <div id="opusOffBlack"></div>
     	<div class="logo"></div>
+      <video autoplay>
+        <source src="resources/images/opus.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video> 
 
         <div class="date-time">
         	<div id="day" class="day"></div>

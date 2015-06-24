@@ -71,5 +71,5 @@ function getGestureDirection(gesture, hand) {
  * @param gestureDirection The direction of the Gesture
  */
 function sendMessage(gestureDirection) {
-    ws.send('{"type": "gesture", "action": "'+ gestureDirection + '"}');
+    ws.send('{"app": "gesture", "action": "'+ gestureDirection + '"}');
 }

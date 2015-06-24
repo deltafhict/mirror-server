@@ -46,9 +46,9 @@ $(function () {
         // Send the request to the database.
         postToDatabase(user, type, app, action);
 
-        switch (type) {
-        	case 'gesture':
-        		if (action === 'swipeToLeft') {
+        switch (app) {
+            case 'gesture':
+                if (action === 'swipeToLeft') {
                     $(".slider .slides").trigger("next");
                 } else if (action === 'swipeToRight') {
                     $(".slider .slides").trigger("prev");
@@ -60,15 +60,8 @@ $(function () {
                 }else {
                     console.log('Unknown action:', action, 'of type', type);
                 }
-                return;
-                break; // Just to make sure.
+                break;
 
-            default:
-            	console.log('Unknown app:' , app, 'with action', action, 'of type', type);
-            	break;
-        }
-
-        switch (app) {
             case 'agenda':
                 if (action === 'open') {
                     $(".slider .slides").trigger("slideTo", 4);
@@ -111,6 +104,31 @@ $(function () {
                 }
                 break;
 
+            case 'opus':
+                if (action === 'on') {
+                    $("video source").attr('src',"resources/images/opus.mp4");
+                    $("video")[0].load();
+                    $("video").show();
+                    $("video").get(0).play();
+			        setTimeout(function(){
+				        $("#opusOffBlack").fadeOut();
+				    },3000); 
+                }
+                
+                else if (action === 'off') {
+                    $("video source").attr('src',"resources/images/opusOff.mp4");
+                    $("video")[0].load();
+                    $("video").fadeIn();
+                    $("video").get(0).play();
+                    $("#opusOffBlack").fadeIn();
+                }
+        		    $("video").on('ended',function(){
+        			  $("video").fadeOut();
+        		    });
+			
+			    
+			break;
+
             default:
                 console.log('Unknown app:' , app, 'with action', action, 'of type', type);
                 break;
@@ -137,7 +155,7 @@ function postToDatabase(user, type, app, action) {
     }
 
     var baseURL = 'php/postAction.php';
-    var params = '?user=' + user +
+    var params = '?user=' + user + 
                     '&type=' + type +
                     '&app=' + app +
                     '&action=' + action;
