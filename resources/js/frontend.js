@@ -53,10 +53,8 @@ $(function () {
                 } else if (action === 'swipeToRight') {
                     $(".slider .slides").trigger("prev");
                 } else if (action === 'swipeDown') {
-                    openFav();
                 }
                 else if (action === 'swipeUp') {
-                    closeFav();
                 }else {
                     console.log('Unknown action:', action, 'of type', type);
                 }
@@ -66,8 +64,6 @@ $(function () {
                 if (action === 'open') {
                     $(".slider .slides").trigger("slideTo", 4);
                 } else if (action === 'close') {
-                    $(".agenda-events").css("width", "0");
-                    $(".agenda-events").height(0);
                     $(".slider .slides").trigger("slideTo", 3);
                 } else {
                     console.log('Unknown action:', action, 'of type', type);
@@ -106,25 +102,15 @@ $(function () {
 
             case 'opus':
                 if (action === 'on') {
-                    $("video source").attr('src',"resources/images/opus.mp4");
-                    $("video")[0].load();
-                    $("video").show();
-                    $("video").get(0).play();
-			        setTimeout(function(){
-				        $("#opusOffBlack").fadeOut();
-				    },3000); 
+                    openDevice(); 
                 }
                 
                 else if (action === 'off') {
-                    $("video source").attr('src',"resources/images/opusOff.mp4");
-                    $("video")[0].load();
-                    $("video").fadeIn();
-                    $("video").get(0).play();
-                    $("#opusOffBlack").fadeIn();
+                    closeAnimation();
                 }
-        		    $("video").on('ended',function(){
-        			  $("video").fadeOut();
-        		    });
+				$("video").on('ended',function(){
+				  $("video").fadeOut();
+				});
 			
 			    
 			break;

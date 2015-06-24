@@ -30,39 +30,11 @@
                  sortDescending: false
                 });
              });
-
-           $(document).ready(function() {
-            $.simpleWeather({
-                woeid: '', //EINDHOVEN729028
-                location: 'Amsterdam',
-                unit: 'c',
-                success: function(weather) {
-                  html = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-                  html += '<div class="caption">';
-                  html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-                  html += '<li class="currently">'+weather.currently+'</li>';
-                  html += '<li>'+weather.low+'&deg;C</li> | ';
-                  html += '<li>'+weather.high+'&deg;C</li></ul>';
-                  
-                  
-                  for(var i=0;i<weather.forecast.length;i++) {
-                    html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'&deg;C</p>';
-                  }
-                  html += '</div>';
-                  $(".weatherLoad").html(html);
-                },
-                error: function(error) {
-                  $(".weatherLoad").html('<p>'+error+'</p>');
-                }
-              });
-            });
-
         </script>
     </head>
 
     <body>
       <div id="opusOffBlack"></div>
-    	<div class="logo"></div>
       <video autoplay>
         <source src="resources/images/opus.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -73,22 +45,23 @@
         	<div id="date" class="date"></div>
             <div id="time" class="time"></div>
         </div>
-
-        <div class="fav-nav">
-        	<ul>
-            	<li class="facebook"><a><i class="fa fa-facebook"></i></a></li>
-                <li class="list"><a><i class="fa fa-list"></i></a></li>
-                <li class="call"><a><i class="fa fa-phone"></i></a></li>
-            </ul>
+        
+        <div class="apps-left">
         </div>
-
-        <div class="weatherLoad">
-        </div>
-
-        <div class="agenda-events">
-            <div class="events">
-                <ul id="eventlist">
-                </ul>
+        
+        <div class="apps-right">
+            <div class="app-holder weather-app" id="weather-app">
+                <div class="avatar">
+                    <div class="temp"></div>
+                    <div class="min"></div>
+                </div>
+            </div>
+            
+            <div class="app-holder agenda-app" id="agenda-app">
+                <div class="events">
+                    <ul id="eventlist">
+                    </ul>
+                </div>
             </div>
         </div>
 

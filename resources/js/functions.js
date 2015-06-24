@@ -85,12 +85,26 @@ $(document).ready(function() {
 });
 
 function openDevice() {
-	$(".logo").fadeIn(3000, function(){
-		$(".logo").fadeOut(1000, function(){
-			$('.navigation').toggleClass('active');
-		});
-	});
+	$("video source").attr('src',"resources/images/opus.mp4");
+	$("video")[0].load();
+	$("video").show();
+	$("video").get(0).play();
+	setTimeout(function(){
+		$("#opusOffBlack").fadeOut();
+	},3000);
 }
+function closeAnimation() {
+	$("video source").attr('src',"resources/images/opusOff.mp4");
+	$("video")[0].load();
+	$("video").fadeIn();
+	$("video").get(0).play();
+	$("#opusOffBlack").fadeIn();	
+}
+
+$("video").on('ended',function(){
+  $("video").fadeOut();
+  $(".navigation").toggleClass("active");
+});
 
 /* EVENTS */
 function openNav() {
