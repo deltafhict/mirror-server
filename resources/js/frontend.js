@@ -69,32 +69,12 @@ $(function () {
                     console.log('Unknown action:', action, 'of type', type);
                 }
                 break;
-
-            case 'slack':
-                if (action === 'pm') {
-                    console.log('Going to PM a person...');
-                } else if (action === 'post') {
-                    console.log('Going to post to a #channel...');
-                } else {
-                    console.log('Unknown action:', action, 'of type', type);
-                }
-                break;
-
-            case 'twitter':
-                if (action === 'showFeed') {
-                    console.log('Going to show feed...');
-                } else if (action === 'dm') {
-                    console.log('Going to DM a person...');
-                } else if (action === 'tweet') {
-                    console.log('Going to tweet...');
-                } else {
-                    console.log('Unknown action:', action, 'of type', type);
-                }
-                break;
-
-            case 'health':
-                if (action === 'showBPM') {
-                    console.log('Goign to show BPM');
+				
+            case 'weather':
+                if (action === 'open') {
+                    $(".slider .slides").trigger("slideTo", 5);
+                } else if (action === 'close') {
+                    $(".slider .slides").trigger("slideTo", 3);
                 } else {
                     console.log('Unknown action:', action, 'of type', type);
                 }

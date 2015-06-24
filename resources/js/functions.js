@@ -103,7 +103,7 @@ function closeAnimation() {
 
 $("video").on('ended',function(){
   $("video").fadeOut();
-  $(".navigation").toggleClass("active");
+  $(".navigation").addClass("active");
 });
 
 /* EVENTS */
