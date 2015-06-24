@@ -1,6 +1,5 @@
 //Variables
 var key = 0;
-var favActive = 1;
 var menuTop;
 
 //Processing
@@ -17,8 +16,6 @@ $(document).ready(function() {
 
 	startTime();
 
-	$(".fav-nav ul li").eq(favActive).addClass("active");
-
 	$(document).keydown(function(e) {
         key = e.which;
 		console.log(key);
@@ -27,51 +24,13 @@ $(document).ready(function() {
 			openDevice();
 		}
 
-		if(key == 192) {
-			$(".agenda-events .events ul").toggleClass("full");
-			$(".slider .slides").toggleClass("full");
-			$(".fav-nav ul").toggleClass("full");
-		}
-
-		if(key == 13){
-			agendaDetail();
-		} else {
-			agendaOverview();
-		}
-
 		if(key == 37 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("prev"); }
 		if(key == 39 && $(".navigation").hasClass("active")){ $(".slider .slides").trigger("next"); }
 
-		if(key == 38){
-			favActive--;
-
-			if(favActive == -1){ favActive = 2; }
-
-			$(".fav-nav ul li").removeClass("active");
-			$(".fav-nav ul li").eq(favActive).addClass("active");
-		}
-
-		if(key == 40){
-			favActive++;
-
-			if(favActive == 3){ favActive = 0; }
-
-			$(".fav-nav ul li").removeClass("active");
-			$(".fav-nav ul li").eq(favActive).addClass("active");
-		}
-
-		if(key == 38 || key == 40){
-			if($(".fav-nav ul > li.list").hasClass("active")) {
-				openAgenda();
-			}
-			else {
-				closeAgenda();
-			}
-		}
-
-		if(key == 49){ openFav(); } //Key 1 opens favorite menu
-		if(key == 50){ closeFav(); } //Key 2 closes favorite menu
-		if(key == 27){ openNav(); } //Key Esc opens main menu
+		if(key == 27){
+			openNav();
+			$(".slider .slides").trigger("slideTo", 3);
+		} //Key Esc opens main menu
     });
 
 	$(function() {
@@ -84,16 +43,17 @@ $(document).ready(function() {
 
 			// remove all .active classes
 			$this.children().removeClass("active");
-			$this.children().addClass("inactive");
 
 			//add .active class to 2nd / centered item
-			items.filter(":eq(2)").addClass("active").removeClass("inactive");
+			items.filter(":eq(2)").addClass("active");
 
 			if($(".slider .slides > li.list").hasClass("active")){
 				openAgenda();
+				closeWeather();
 			}
 			else if($(".slider .slides > li.weather").hasClass("active")){
 				openWeather();
+				closeAgenda();
 			}
 			else {
 				closeAgenda();
@@ -119,12 +79,6 @@ $(document).ready(function() {
 			auto: {
 				play: false,
 			},
-			/*prev: '#prev',
-			next: '#next',
-			pagination: {
-				container: '#pager',
-				deviation: 1
-			}*/
 		});
 	});
 
@@ -133,48 +87,30 @@ $(document).ready(function() {
 function openDevice() {
 	$(".logo").fadeIn(3000, function(){
 		$(".logo").fadeOut(1000, function(){
-			$(".fav-nav").fadeIn();
+			$('.navigation').toggleClass('active');
 		});
 	});
 }
 
 /* EVENTS */
-function openFav() {
-	$('.fav-nav').fadeIn();
-}
-function closeFav() {
-	$('.fav-nav').fadeOut();
-}
-
 function openNav() {
 	$('.navigation').toggleClass('active');
 }
 
 function openAgenda(){
-	$('.agenda-events').css('width', '300px');
-	$('.agenda-events').height(menuTop);
+	$('.agenda-app').addClass('active');
+	$('.agenda-app').height(menuTop);
 }
 function closeAgenda(){
-	$('.agenda-events').css('width', '0');
-	$('.agenda-events').height(0);
+	$('.agenda-app').removeClass('active');
 }
 
 function openWeather(){
-	$('.weatherLoad').css('width', '500px');
-	$('.weatherLoad').height(menuTop);
+	getWeather();
+	$('.weather-app').addClass('active');
 }
 function closeWeather(){
-	$('.weatherLoad').css('width', '0');
-	$('.weatherLoad').height(0);
-}
-
-function agendaDetail(){
-	$('.agenda-events .events ul > li').not(':nth-child(1)').css('display', 'none');
-	$('.agenda-events .events ul > li .description').css('display', 'block');
-}
-function agendaOverview(){
-	$('.agenda-events .events ul > li').not(':nth-child(1)').css('display', 'block');
-	$('.agenda-events .events ul > li .description').css('display', 'none');
+	$('.weather-app').removeClass('active');
 }
 
 /* STATIC SCRIPTS */
@@ -195,13 +131,48 @@ function startTime() {
     m = checkTime(m);
     s = checkTime(s);
 
-	document.getElementById('day').innerHTML = dayNames[day];
-	document.getElementById('date').innerHTML = monthNames[month] + " " + day;
-    document.getElementById('time').innerHTML = h + ":" + m + "<div class='second'>" + s + "</div>";
+	document.getElementById('date').innerHTML = dayNames[day] + ", " + monthNames[month] + " " + day;
+    document.getElementById('time').innerHTML = h + ":" + m;
     var t = setTimeout(function(){startTime()},500);
 }
 
 function checkTime(i) {
     if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
     return i;
+}
+
+function getWeather() {
+	$.simpleWeather({
+		woeid: '', //EINDHOVEN729028
+		location: 'Eindhoven',
+		unit: 'c',
+		success: function(weather) {
+			
+			html = '<div class="avatar">';
+				//html += '<div>' + weather.currently + '</div>';
+				html += '<div class="info">';
+					html += '<div class="temp">' + weather.temp + '&deg;</div>';
+					html += '<div class="extra clear">';
+						html += '<div class="min">' + weather.low + '&deg;</div>'; 
+						html += '<div class="max">' + weather.high + '&deg;</div>';
+						html += '<div class="type">' + weather.currently + '</div>';
+					html += '</div>';
+				html += '</div>';
+			html += '</div>';
+			
+			html += '<div class="extra">';
+				html += '<div class="city">' + weather.city + '</div>';
+				html += '<div class="extra-sub">';
+					html += '<div class="sub">Humidity <span>' + weather.humidity + '%</span></div>';
+					html += '<div class="sub">Wind <span>' + weather.wind.speed + ' ' + weather.units.speed + '</span></div>';
+					html += '<div class="sub">Direction <span>' + weather.wind.direction + '</span></div>';
+				html += '</div>';
+			html += '</div>';  
+
+		  	$("#weather-app").html(html);
+		},
+		error: function(error) {
+		  $("#weather-app").html('<p>'+error+'</p>');
+		}
+	  });
 }

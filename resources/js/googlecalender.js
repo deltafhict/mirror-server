@@ -6,7 +6,7 @@
     var defaults = $.extend({
         calendarId: 'en.usa#holiday@group.v.calendar.google.com',
         apiKey: 'Public_API_Key',
-        dateFormat: 'test',
+        dateFormat: 'custom',
         errorMsg: 'No events in calendar',
         maxEvents: -1,
         futureEventsOnly: true,
@@ -129,8 +129,8 @@
         case 'MonthDay':
           fd = calendar.months.full[month] + ' ' + dayNum;
           break;
-		case 'test':
-          fd = dayNum + '<br />' + calendar.months.short[month];
+		case 'custom':
+          fd = dayNum + ' ' + calendar.months.short[month];
           break;
         case 'YearMonth':
           fd = calendar.months.full[month] + ' ' + year;
