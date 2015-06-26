@@ -91,9 +91,48 @@ $(function () {
 				$("video").on('ended',function(){
 				  $("video").fadeOut();
 				});
-			
-			    
-			break;
+				
+            case 'face learner':
+                if (action === 'start') { 
+                    console.log('Unknown action:', action, 'of type', type);
+					$('.face-setup').fadeIn();
+					$('.face-setup .title').fadeIn();
+
+                } else if (action === 'front'){
+					$('.face-setup .title').fadeOut(function(){
+						$('.face-setup .dot').css('opacity', '1');
+					});
+
+                }else if (action === 'left'){
+					$('.face-setup .dot').removeClass('bottom');
+					$('.face-setup .dot').removeClass('right');
+					$('.face-setup .dot').addClass('left');
+
+                }else if (action === 'right'){
+					$('.face-setup .dot').removeClass('bottom');
+					$('.face-setup .dot').removeClass('left');
+					$('.face-setup .dot').addClass('right');
+
+                }else if (action === 'down'){
+					$('.face-setup .dot').removeClass('left');
+					$('.face-setup .dot').removeClass('right');
+					$('.face-setup .dot').addClass('bottom');
+
+                }else if (action === 'finish'){
+					$('.face-setup .dot').css('opacity', '0');
+					setTimeout( function(){ 
+						$('.face-setup .dot').removeClass('left');
+						$('.face-setup .dot').removeClass('right');
+						$('.face-setup .dot').removeClass('bottom');
+					}  , 1000 );
+					$('.face-setup .finish').fadeIn(1000, function(){
+						$('.face-setup').fadeOut(1000);
+					});
+
+                }else{
+                    console.log('Unknown action:', action, 'of type', type);
+                }
+                break;
 
             default:
                 console.log('Unknown app:' , app, 'with action', action, 'of type', type);

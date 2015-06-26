@@ -46,6 +46,12 @@
             <div id="time" class="time"></div>
         </div>
         
+        <div class="face-setup">
+        	<div class="title">Turn your head in the direction of the dot</div>
+            <div class="finish">Face callibration completed</div>
+            <div class="dot"><i class="fa fa-dot-circle-o"></i></div>
+        </div>
+        
         <div class="apps-left">
         </div>
         
