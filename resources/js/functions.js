@@ -27,7 +27,7 @@ $(document).ready(function() {
 		//Face callibration debug
 		if(key == 49) {
 			$('.face-setup').fadeIn();
-			$('.face-setup .title').fadeIn();	
+			$('.face-setup .title').fadeIn();
 		}
 		if(key == 50) {
 			$('.face-setup .title').fadeOut(function(){
@@ -51,7 +51,7 @@ $(document).ready(function() {
 		}
 		if(key == 54) {
 			$('.face-setup .dot').css('opacity', '0');
-			setTimeout( function(){ 
+			setTimeout( function(){
 				$('.face-setup .dot').removeClass('left');
 				$('.face-setup .dot').removeClass('right');
 				$('.face-setup .dot').removeClass('bottom');
@@ -119,7 +119,7 @@ $(document).ready(function() {
 				closeWeather();
 			}
 			else if($(".slider .slides > li.weather").hasClass("active")){
-				openWeather();
+				openWeather('Eindhoven');
 				closeAgenda();
 			}
 			else {
@@ -165,7 +165,7 @@ function closeAnimation() {
 	$("video")[0].load();
 	$("video").fadeIn();
 	$("video").get(0).play();
-	$("#opusOffBlack").fadeIn();	
+	$("#opusOffBlack").fadeIn();
 }
 
 $("video").on('ended',function(){
@@ -186,8 +186,8 @@ function closeAgenda(){
 	$('.agenda-app').removeClass('active');
 }
 
-function openWeather(){
-	getWeather();
+function openWeather(location){
+	getWeather(location);
 	$('.weather-app').addClass('active');
 }
 function closeWeather(){
@@ -222,25 +222,29 @@ function checkTime(i) {
     return i;
 }
 
-function getWeather() {
+function getWeather(location) {
+	if (location === null) {
+		location === 'Eindhoven';
+	}
+
 	$.simpleWeather({
 		woeid: '', //EINDHOVEN729028
-		location: 'Eindhoven',
+		location: location,
 		unit: 'c',
 		success: function(weather) {
-			
+
 			html = '<div class="avatar">';
 				//html += '<div>' + weather.currently + '</div>';
 				html += '<div class="info">';
 					html += '<div class="temp">' + weather.temp + '&deg;</div>';
 					html += '<div class="extra clear">';
-						html += '<div class="min">' + weather.low + '&deg;</div>'; 
+						html += '<div class="min">' + weather.low + '&deg;</div>';
 						html += '<div class="max">' + weather.high + '&deg;</div>';
 						html += '<div class="type">' + weather.currently + '</div>';
 					html += '</div>';
 				html += '</div>';
 			html += '</div>';
-			
+
 			html += '<div class="extra">';
 				html += '<div class="city">' + weather.city + '</div>';
 				html += '<div class="extra-sub">';
@@ -248,7 +252,7 @@ function getWeather() {
 					html += '<div class="sub">Wind <span>' + weather.wind.speed + ' ' + weather.units.speed + '</span></div>';
 					html += '<div class="sub">Direction <span>' + weather.wind.direction + '</span></div>';
 				html += '</div>';
-			html += '</div>';  
+			html += '</div>';
 
 		  	$("#weather-app").html(html);
 		},

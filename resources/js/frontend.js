@@ -42,9 +42,19 @@ $(function () {
         var type = json['data']['type']; // voice or gesture
         var app = json['data']['app'];
         var action = json['data']['action'];
+        var weatherLocation = json['data']['weatherLocation'];
 
         // Send the request to the database.
         postToDatabase(user, type, app, action);
+
+        if (type === "facerecognition") {
+            if (action === null) {
+                console.log('Failed recognition.');
+            } else {
+                console.log('Recognized ', action);
+                getWeatherForPerson(action);
+            }
+        }
 
         switch (app) {
             case 'gesture':
@@ -53,9 +63,10 @@ $(function () {
                 } else if (action === 'swipeToRight') {
                     $(".slider .slides").trigger("prev");
                 } else if (action === 'swipeDown') {
-                }
-                else if (action === 'swipeUp') {
-                }else {
+                    // To be implemented.
+                } else if (action === 'swipeUp') {
+                    // To be implemented.
+                } else {
                     console.log('Unknown action:', action, 'of type', type);
                 }
                 break;
@@ -69,9 +80,13 @@ $(function () {
                     console.log('Unknown action:', action, 'of type', type);
                 }
                 break;
-				
+
             case 'weather':
                 if (action === 'open') {
+                    if (weatherLocation !== null) {
+                        openWeather(weatherLocation);
+                    }
+
                     $(".slider .slides").trigger("slideTo", 5);
                 } else if (action === 'close') {
                     $(".slider .slides").trigger("slideTo", 3);
@@ -82,24 +97,25 @@ $(function () {
 
             case 'opus':
                 if (action === 'on') {
-                    openDevice(); 
+                    openDevice();
                 }
-                
+
                 else if (action === 'off') {
                     closeAnimation();
                 }
 				$("video").on('ended',function(){
 				  $("video").fadeOut();
 				});
-            break;
-				
+                break;
+
             case 'face learning':
-                if (action === 'start') { 
+                if (action === 'start') {
+
                     console.log('Unknown action:', action, 'of type', type);
 					$('.face-setup').fadeIn();
                     $('#part1').fadeIn();
 
-                } else if (action === 'forward'){
+                } else if (action === 'forward') {
 					$('.face-setup .title').fadeOut(function(){
                         $('#part2').fadeIn();
 						$('.face-setup .dot').css('opacity', '1');
@@ -108,25 +124,25 @@ $(function () {
                         $('.face-setup .dot').removeClass('bottom');
 					});
 
-                }else if (action === 'left'){
+                } else if (action === 'left') {
 					$('.face-setup .dot').removeClass('bottom');
 					$('.face-setup .dot').removeClass('right');
 					$('.face-setup .dot').addClass('left');
 
-                }else if (action === 'right'){
+                } else if (action === 'right') {
 					$('.face-setup .dot').removeClass('bottom');
 					$('.face-setup .dot').removeClass('left');
 					$('.face-setup .dot').addClass('right');
 
-                }else if (action === 'down'){
+                } else if (action === 'down') {
 					$('.face-setup .dot').removeClass('left');
 					$('.face-setup .dot').removeClass('right');
 					$('.face-setup .dot').addClass('bottom');
 
-                }else if (action === 'finish'){
+                } else if (action === 'finish') {
                     $('#part2').fadeOut(function(){
     					$('.face-setup .dot').css('opacity', '0');
-    					setTimeout( function(){ 
+    					setTimeout( function() {
     						$('.face-setup .dot').removeClass('left');
     						$('.face-setup .dot').removeClass('right');
     						$('.face-setup .dot').removeClass('bottom');
@@ -137,11 +153,11 @@ $(function () {
     					});
                     });
 
-                }else{
+                } else {
                     console.log('Unknown action:', action, 'of type', type);
                 }
                 break;
-				
+
             case 'voice calibration':
 
                     if (action === 'open voice calibration'){
@@ -152,7 +168,7 @@ $(function () {
                         $('#part1').delay(1000).fadeOut(function(){
                             $('#part6').delay(1000).fadeIn();
                         });
-                      
+
                     }else if (action === 'close mail'){
                         $('#part6').fadeOut(function(){
                             $('#part2').fadeOut(function(){
@@ -177,8 +193,8 @@ $(function () {
                     }else if (action === 'finish'){
                         $('#part4').fadeOut(function(){
                             $('#part5').fadeIn(1000, function(){
-                                $('.voice-setup .title').fadeOut(1000); 
-                                $('.voice-setup').fadeOut(1000);    
+                                $('.voice-setup .title').fadeOut(1000);
+                                $('.voice-setup').fadeOut(1000);
                             });
                         });
 
@@ -214,10 +230,24 @@ function postToDatabase(user, type, app, action) {
     }
 
     var baseURL = 'php/postAction.php';
-    var params = '?user=' + user + 
+    var params = '?user=' + user +
                     '&type=' + type +
                     '&app=' + app +
                     '&action=' + action;
+
+    xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open('POST', baseURL + params, true);
+    xmlhttp.send();
+}
+
+function getWeatherForPerson(person) {
+    if (person === null) {
+        return;
+    }
+
+    var baseURL = 'php/getWeather.php';
+    var params = '?person=' + person;
 
     xmlhttp = new XMLHttpRequest();
 

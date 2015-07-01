@@ -38,14 +38,14 @@
       <video autoplay>
         <source src="resources/images/opus.mp4" type="video/mp4">
         Your browser does not support the video tag.
-      </video> 
+      </video>
 
         <div class="date-time">
         	<div id="day" class="day"></div>
         	<div id="date" class="date"></div>
             <div id="time" class="time"></div>
         </div>
-        
+
         <div class="face-setup">
             <div class="title"id="part1">Stand in front of the mirror 
                 if this message stays please move your head till the message disappears.</div>
@@ -53,7 +53,7 @@
             <div class="finish">Face callibration completed</div>
             <div class="dot"><i class="fa fa-dot-circle-o"></i></div>
         </div>
-        
+
         <div class="voice-setup">
             <div class="title" id="part1">Voice calibration, say the words between the <span>quotation marks</span></div>
             <div class="title" id="part2">Say: "<span>close mail</span>"</div>
@@ -62,10 +62,10 @@
             <div class="title" id="part5">Voice callibration completed</div>
             <div class="title" id="part6">Say: "<span>start calibration</span>"</div>
         </div>
-        
+
         <div class="apps-left">
         </div>
-        
+
         <div class="apps-right">
             <div class="app-holder weather-app" id="weather-app">
                 <div class="avatar">
@@ -73,7 +73,7 @@
                     <div class="min"></div>
                 </div>
             </div>
-            
+
             <div class="app-holder agenda-app" id="agenda-app">
                 <div class="events">
                     <ul id="eventlist">

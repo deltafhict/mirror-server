@@ -37,6 +37,7 @@ wsServer.on('request', function(request) {
 
     // user sent some message
     connection.on('message', function(message) {
+        console.log('start parsing...');
         var req = JSON.parse(message['utf8Data']);
         console.log(req);
 
