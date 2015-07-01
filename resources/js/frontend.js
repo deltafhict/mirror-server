@@ -174,35 +174,35 @@ $(function () {
                         console.log('Unknown app:', app, 'with action', action, 'of type', type);
 
                         $('.voice-setup').fadeIn();
-                        $('#part1').fadeIn();
-                        $('#part1').delay(1000).fadeOut(function(){
-                            $('#part6').delay(1000).fadeIn();
+                        $('.voice-setup #part1').fadeIn();
+                        $('.voice-setup #part1').delay(1000).fadeOut(function(){
+                            $('.voice-setup #part6').delay(1000).fadeIn();
                         });
 
                     }else if (action === 'close mail'){
-                        $('#part6').fadeOut(function(){
-                            $('#part2').fadeOut(function(){
-                                 $('#part2').fadeIn();
+                        $('.voice-setup #part6').fadeOut(function(){
+                            $('.voice-setup #part2').fadeOut(function(){
+                                 $('.voice-setup #part2').fadeIn();
                              });
                         });
 
                     }else if (action === 'tumbleweed'){
-                        $('#part2').fadeOut(function(){
-                            $('#part3').fadeOut(function(){
-                                 $('#part3').fadeIn();
+                        $('.voice-setup #part2').fadeOut(function(){
+                            $('.voice-setup #part3').fadeOut(function(){
+                                 $('.voice-setup #part3').fadeIn();
                              });
                         });
 
                     }else if (action === 'colonel'){
-                        $('#part3').fadeOut(function(){
-                            $('#part4').fadeOut(function(){
-                                 $('#part4').fadeIn();
+                        $('.voice-setup #part3').fadeOut(function(){
+                            $('.voice-setup #part4').fadeOut(function(){
+                                 $('.voice-setup #part4').fadeIn();
                              });
                         });
 
                     }else if (action === 'finish'){
-                        $('#part4').fadeOut(function(){
-                            $('#part5').fadeIn(1000, function(){
+                        $('.voice-setup #part4').fadeOut(function(){
+                            $('.voice-setup #part5').fadeIn(1000, function(){
                                 $('.voice-setup .title').fadeOut(1000);
                                 $('.voice-setup').fadeOut(1000);
                             });
