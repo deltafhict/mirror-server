@@ -81,6 +81,16 @@ $(function () {
                 }
                 break;
 
+            case 'traffic':
+                if (action === 'open') {
+                    $(".slider .slides").trigger("slideTo", 6);
+                } else if (action === 'close') {
+                    $(".slider .slides").trigger("slideTo", 3);
+                } else {
+                    console.log('Unknown action:', action, 'of type', type);
+                }
+                break;
+
             case 'weather':
                 if (action === 'open') {
                     if (weatherLocation !== null) {

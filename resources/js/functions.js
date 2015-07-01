@@ -121,8 +121,14 @@ $(document).ready(function() {
 			else if($(".slider .slides > li.weather").hasClass("active")){
 				openWeather('Eindhoven');
 				closeAgenda();
+				closeTraffic();
+			}
+			else if($(".slider .slides > li.car").hasClass("active")){
+				closeWeather();
+				openTraffic();
 			}
 			else {
+				closeTraffic();
 				closeAgenda();
 				closeWeather();
 			}
@@ -186,10 +192,19 @@ function closeAgenda(){
 	$('.agenda-app').removeClass('active');
 }
 
+function openTraffic(){
+	$('.traffic-app').addClass('active');
+	$('.traffic-app').height(menuTop);
+}
+function closeTraffic(){
+	$('.traffic-app').removeClass('active');
+}
+
 function openWeather(location){
 	getWeather(location);
 	$('.weather-app').addClass('active');
 }
+
 function closeWeather(){
 	$('.weather-app').removeClass('active');
 }

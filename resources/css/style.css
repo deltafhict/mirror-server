@@ -59,10 +59,15 @@ h3,
 h4, 
 h5, 
 h6 {
-	color: #000; 
+	color: white;
 	font-weight: normal; 
 	line-height: 1; 
 	margin: 0;
+}
+h2{
+	font-size:2em;
+	padding-bottom:20px;
+	float:left;
 }
 
 /* text */
@@ -364,6 +369,20 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc;}
 }
 .weather-app .extra .extra-sub .sub span { float: right; }
 
+#traffic-app{ 
+   
+}
+#traffic-app p{
+   font-size: 1.1em;
+   letter-spacing: 0.1em;
+   padding:3px 0px 3px 0px;
+   border-bottom:1px solid;
+   width:455px;
+}
+#carpic{
+	margin-left:40px;
+	padding-bottom:10px;
+}
 
 .agenda-app { overflow: hidden; }
 .agenda-app .title {

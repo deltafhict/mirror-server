@@ -73,7 +73,30 @@
                     <div class="min"></div>
                 </div>
             </div>
-
+            <div class="app-holder traffic-app" id="traffic-app">
+                <h2>TRAFFIC JAMS</h2> <img id="carpic" src="resources/images/carblauw.png" height="50px"/>
+                    <?php  
+                        $rss = new DOMDocument();
+                        $rss->load('http://www.fileindex.nl/rss.php');
+                        $feed = array();
+                        foreach ($rss->getElementsByTagName('item') as $node) {
+                            $item = array (
+                                'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+                                'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
+                                //'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                            );
+                            array_push($feed, $item);
+                        }
+                        $limit = 10;
+                        for($x=0;$x<$limit;$x++) {
+                            $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
+                            //$link = $feed[$x]['link'];
+                            $description = $feed[$x]['desc'];
+                           // $date = date('l F d, Y', strtotime($feed[$x]['date']));
+                            echo '<article class="traffic"><p>'.$title.'</p></article>';
+                        }
+                    ?>
+            </div>
             <div class="app-holder agenda-app" id="agenda-app">
                 <div class="events">
                     <ul id="eventlist">
