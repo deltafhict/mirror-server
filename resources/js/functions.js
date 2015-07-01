@@ -85,8 +85,8 @@ $(document).ready(function() {
 		if(key == 12) {
 			$('#part4').fadeOut(0, function(){
 				$('#part5').fadeIn(1000, function(){
-					$('.voice-setup .title').fadeOut(1000);	
-					$('.voice-setup').fadeOut(1000);	
+					$('.voice-setup .title').fadeOut(1000);
+					$('.voice-setup').fadeOut(1000);
 				});
 			});
 		}
@@ -119,7 +119,7 @@ $(document).ready(function() {
 				closeWeather();
 			}
 			else if($(".slider .slides > li.weather").hasClass("active")){
-				openWeather(weatherLocation);
+				openWeather(window.weatherLocation);
 				closeAgenda();
 				closeTraffic();
 			}

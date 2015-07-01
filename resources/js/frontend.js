@@ -5,7 +5,7 @@ $(function () {
     var content = $('#content');
     var input = $('#input');
     var status = $('#status');
-    var weatherLocation = null;
+    window.weatherLocation = null;
 
     // if user is running mozilla then use it's built-in WebSocket
     window.WebSocket = window.WebSocket || window.MozWebSocket;
@@ -43,8 +43,15 @@ $(function () {
         var type = json['data']['type']; // voice or gesture
         var app = json['data']['app'];
         var action = json['data']['action'];
+        var first = false;
+
+        if (!first) {
+            window.weatherLocation = json['data']['weatherLocation'];
+            first = true;
+        }
+
         if (json['data']['weatherLocation'] !== null) {
-            weatherLocation = json['data']['weatherLocation'];
+            window.weatherLocation = json['data']['weatherLocation'];
         }
 
         // Send the request to the database.
@@ -96,8 +103,8 @@ $(function () {
 
             case 'weather':
                 if (action === 'open') {
-                    if (weatherLocation !== null) {
-                        openWeather(weatherLocation);
+                    if (window.weatherLocation !== null) {
+                        openWeather(window.weatherLocation);
                     }
 
                     $(".slider .slides").trigger("slideTo", 5);
