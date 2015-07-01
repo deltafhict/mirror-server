@@ -23,6 +23,8 @@ $(document).ready(function() {
 		if(key == 9) {
 			openDevice();
 		}
+		
+		//Face callibration debug
 		if(key == 49) {
 			$('.face-setup').fadeIn();
 			$('.face-setup .title').fadeIn();	
@@ -56,6 +58,36 @@ $(document).ready(function() {
 			}  , 1000 );
 			$('.face-setup .finish').fadeIn(1000, function(){
 				$('.face-setup').fadeOut(1000);
+				$('.face-setup .finish').fadeOut(1000);
+			});
+		}
+		
+		//Voice callibration debug
+		if(key == 35) {
+			$('.voice-setup').fadeIn();
+			$('#part1').fadeIn();
+		}
+		if(key == 40) {
+			$('#part1').fadeOut(0, function(){
+				$('#part2').fadeIn();
+			});
+		}
+		if(key == 34) {
+			$('#part2').fadeOut(0, function(){
+				$('#part3').fadeIn();
+			});
+		}
+		if(key == 37) {
+			$('#part3').fadeOut(0, function(){
+				$('#part4').fadeIn();
+			});
+		}
+		if(key == 12) {
+			$('#part4').fadeOut(0, function(){
+				$('#part5').fadeIn(1000, function(){
+					$('.voice-setup .title').fadeOut(1000);	
+					$('.voice-setup').fadeOut(1000);	
+				});
 			});
 		}
 

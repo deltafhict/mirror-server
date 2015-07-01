@@ -91,16 +91,21 @@ $(function () {
 				$("video").on('ended',function(){
 				  $("video").fadeOut();
 				});
+            break;
 				
-            case 'face learner':
+            case 'face learning':
                 if (action === 'start') { 
                     console.log('Unknown action:', action, 'of type', type);
 					$('.face-setup').fadeIn();
-					$('.face-setup .title').fadeIn();
+                    $('#part1').fadeIn();
 
-                } else if (action === 'front'){
+                } else if (action === 'forward'){
 					$('.face-setup .title').fadeOut(function(){
+                        $('#part2').fadeIn();
 						$('.face-setup .dot').css('opacity', '1');
+                        $('.face-setup .dot').removeClass('left');
+                        $('.face-setup .dot').removeClass('right');
+                        $('.face-setup .dot').removeClass('bottom');
 					});
 
                 }else if (action === 'left'){
@@ -119,19 +124,68 @@ $(function () {
 					$('.face-setup .dot').addClass('bottom');
 
                 }else if (action === 'finish'){
-					$('.face-setup .dot').css('opacity', '0');
-					setTimeout( function(){ 
-						$('.face-setup .dot').removeClass('left');
-						$('.face-setup .dot').removeClass('right');
-						$('.face-setup .dot').removeClass('bottom');
-					}  , 1000 );
-					$('.face-setup .finish').fadeIn(1000, function(){
-						$('.face-setup').fadeOut(1000);
-					});
+                    $('#part2').fadeOut(function(){
+    					$('.face-setup .dot').css('opacity', '0');
+    					setTimeout( function(){ 
+    						$('.face-setup .dot').removeClass('left');
+    						$('.face-setup .dot').removeClass('right');
+    						$('.face-setup .dot').removeClass('bottom');
+    					}  , 1000 );
+    					$('.face-setup .finish').fadeIn(1000, function(){
+    						$('.face-setup').fadeOut(1000);
+    						$('.face-setup .finish').fadeOut(1000);
+    					});
+                    });
 
                 }else{
                     console.log('Unknown action:', action, 'of type', type);
                 }
+                break;
+				
+            case 'voice calibration':
+
+                    if (action === 'open voice calibration'){
+                        console.log('Unknown app:', app, 'with action', action, 'of type', type);
+
+                        $('.voice-setup').fadeIn();
+                        $('#part1').fadeIn();
+                        $('#part1').delay(1000).fadeOut(function(){
+                            $('#part6').delay(1000).fadeIn();
+                        });
+                      
+                    }else if (action === 'close mail'){
+                        $('#part6').fadeOut(function(){
+                            $('#part2').fadeOut(function(){
+                                 $('#part2').fadeIn();
+                             });
+                        });
+
+                    }else if (action === 'tumbleweed'){
+                        $('#part2').fadeOut(function(){
+                            $('#part3').fadeOut(function(){
+                                 $('#part3').fadeIn();
+                             });
+                        });
+
+                    }else if (action === 'colonel'){
+                        $('#part3').fadeOut(function(){
+                            $('#part4').fadeOut(function(){
+                                 $('#part4').fadeIn();
+                             });
+                        });
+
+                    }else if (action === 'finish'){
+                        $('#part4').fadeOut(function(){
+                            $('#part5').fadeIn(1000, function(){
+                                $('.voice-setup .title').fadeOut(1000); 
+                                $('.voice-setup').fadeOut(1000);    
+                            });
+                        });
+
+                    }else{
+                        console.log('Unknown action:', action, 'of type', type);
+                    }
+
                 break;
 
             default:

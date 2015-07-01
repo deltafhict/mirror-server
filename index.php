@@ -47,9 +47,20 @@
         </div>
         
         <div class="face-setup">
-        	<div class="title">Turn your head in the direction of the dot</div>
+            <div class="title"id="part1">Stand in front of the mirror 
+                if this message stays please move your head till the message disappears.</div>
+            <div class="title"id="part2">Turn your head in the direction of the <span>dot</span></div>
             <div class="finish">Face callibration completed</div>
             <div class="dot"><i class="fa fa-dot-circle-o"></i></div>
+        </div>
+        
+        <div class="voice-setup">
+            <div class="title" id="part1">Voice calibration, say the words between the <span>quotation marks</span></div>
+            <div class="title" id="part2">Say: "<span>close mail</span>"</div>
+            <div class="title" id="part3">Say: "<span>tumbleweed</span>"</div>
+            <div class="title" id="part4">Say: "<span>colonel</span>"</div>
+            <div class="title" id="part5">Voice callibration completed</div>
+            <div class="title" id="part6">Say: "<span>start calibration</span>"</div>
         </div>
         
         <div class="apps-left">
