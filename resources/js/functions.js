@@ -239,7 +239,7 @@ function checkTime(i) {
 
 function getWeather(location) {
 	if (location === null) {
-		location === 'Eindhoven';
+		location = 'Eindhoven';
 	}
 
 	$.simpleWeather({
