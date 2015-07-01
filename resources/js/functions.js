@@ -23,7 +23,7 @@ $(document).ready(function() {
 		if(key == 9) {
 			openDevice();
 		}
-		
+
 		//Face callibration debug
 		if(key == 49) {
 			$('.face-setup').fadeIn();
@@ -61,7 +61,7 @@ $(document).ready(function() {
 				$('.face-setup .finish').fadeOut(1000);
 			});
 		}
-		
+
 		//Voice callibration debug
 		if(key == 35) {
 			$('.voice-setup').fadeIn();
@@ -119,7 +119,7 @@ $(document).ready(function() {
 				closeWeather();
 			}
 			else if($(".slider .slides > li.weather").hasClass("active")){
-				openWeather('Eindhoven');
+				openWeather(weatherLocation);
 				closeAgenda();
 				closeTraffic();
 			}
